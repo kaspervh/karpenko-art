@@ -9,31 +9,106 @@
   position: absolute;
   display: flex;
   flex-direction: column;
-  background-color: #444;
 }
 
 .header{
   height: 80px; 
   width: 100vw;
-  border-bottom: 1px solid #333;
   display: flex;
   justify-content: space-between;
-  background-color: #333;
 }
 
 .header-left{
   width: 33%;
   height: 100%;
+  display: flex;
+  justify-content: end;
+  font-family: 'Kaushan Script', cursive;
 }
+
+/* handles the navigation menu*/
+
+.navbar{
+  height: 10vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.toggle-button{
+  height: 50px;
+  width: 50px;
+  margin-right: 20px;
+  background: white;
+  padding: 5px;
+  margin-left: 10px;
+}
+
+.toggle-button:hover{
+  cursor: pointer;
+}
+
+#toggle-check{
+  display: none;
+}
+
+.sandwitch{
+  background: black;
+  height: 5px;
+  width: 50px;
+  border-radius: 15px;
+  margin-top: 8px;
+  position: relative;
+  transition: transform 0.8s, right 0.8s, top 0.8s, bottom 0.8s;
+}
+
+.navlink{
+  display: flex;
+  background: white;
+  height: 50px;
+  padding: 5px;
+  text-decoration: none;
+  color: black;
+  align-items: center;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  pointer-events: none;
+
+}
+
+.navlink:hover{
+  background: black;
+  color: white;
+}
+
+.gallery-box{
+  width: 100vw;
+  min-height: 90vh;
+}
+
+
+.picture-box{
+  width: 50vw;
+  height: 30vh;
+  background: black;
+  margin-bottom: 20px;
+  display: flex;
+}
+
+.picture {
+  height: 100%;
+  width: 50%;
+}
+
 
 .header-center{
   width: 33%; 
   height:100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  font-family: 'Kaushan Script', cursive;
-  color: white;
+  align-items: center;  
 }
 
 .header-right{
@@ -51,7 +126,7 @@
   justify-content: center;
   align-items: center;
   text-decoration: none;
-  color: white;
+  
   font-size: 25px;
 }
 
