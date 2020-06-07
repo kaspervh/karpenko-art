@@ -17,13 +17,12 @@ const Header = () => {
   }
 
   const navigationVisibility = ()=> {
-    if(menuOpen == true){return({opacity: 1, pointerEvents: 'auto'})}
+    if(menuOpen === true){return({opacity: 1, pointerEvents: 'auto'})}
   }
 
   return(
     <div className="header">
       <div className="header-left"><h1>karpenko art</h1></div>
-      <div className="header-center"></div>
       <div className="header-right">
         <div className="navbar" >
           <div className="toggle-button" onClick={e => menuOpen === false ? setmenuOpen(true) : setmenuOpen(false)}>
