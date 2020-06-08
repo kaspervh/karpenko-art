@@ -115,17 +115,24 @@
   margin-bottom: 50px;
 }
 
-.picture {
-  width: 350px;
+.picture-box{
+  max-width: 350px;
+  max-height: 300px;
+  overflow: hidden;
+  margin: 30px;
+}
+
+.picture-box img {
+  width: 100%;
   height: auto;
   margin: 30px;
-  filter: grayscale(100%);
   transition: all 0.5s ease-in;
 }
 
-.picture:hover{
-  filter: grayscale(0%);
+.picture-box img:hover{
+ 
   cursor: pointer;
+  transform: scale(1.2);
 }
 
 /*handles modal view*/
@@ -133,9 +140,30 @@
 .modal-background{
   height: 100vh;
   width:100vw;
-  position: relative;
+  position: absolute;
   z-index: 10;
-  background: rgba(black 0.5);
+  background: rgba(66, 66, 66, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box{
+  width:80vw; 
+  height: 80vh;
+  background: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-image-box{
+  width: auto;
+  height: 60%;
+}
+
+.modal-description{
+  height: 100%;
+  width:100%;
 }
 
 
