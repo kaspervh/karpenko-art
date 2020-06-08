@@ -6,13 +6,38 @@ import Media from './components/Media';
 import Contact from './components/Contact'
 import AboutMe from './components/AboutMe'
 import Header from './components/shared/Header';
+import {useDispatch, useSelector} from 'react-redux';
+import {HideModalAction} from './actions/ModalAction'
 
 function App() {
+  const dispatch = useDispatch()
+  const showModal = useSelector(state => state.ModalReducer);
+
+  const closeModal = () => {
+    dispatch(HideModalAction())
+  }
+
+  const pageModal = () =>{
+    if(showModal === true){
+      console.log('showing modal')
+      return(
+        <div className="modal-background" onClick={e => closeModal()}>
+          <div className="modal-box">
+            <div className="modal-image"></div>
+            <div className="modal-description"></div>
+          </div>
+        </div>
+      )
+    }
+  }
+  
   return (
     
     <Router>
+      {pageModal()}
       {/* <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet"/>  */}
       <div className="App">
+        
         <Header/>
         <div className="container">
           <Switch>
