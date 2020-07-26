@@ -6,6 +6,7 @@ import Media from './components/Media';
 import Contact from './components/Contact'
 import AboutMe from './components/AboutMe'
 import Header from './components/shared/Header';
+import Login from './components/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {HideModalAction} from './actions/ModalAction'
 
@@ -45,6 +46,7 @@ function App() {
             <Route path='/media' component={Media}/>
             <Route path='/contact' component={Contact}/>
             <Route path='/about-me' component={AboutMe}/>
+            <Route path='/login' component={Login}/>
           </Switch>
         </div>
       </div>
