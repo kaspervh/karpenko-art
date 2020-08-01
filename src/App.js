@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch, } from 'react-router-dom'
 import Gallery from './components/Gallery';
 import Media from './components/Media';
 import Contact from './components/Contact'
@@ -9,6 +9,9 @@ import Header from './components/shared/Header';
 import Login from './components/Login';
 import {useDispatch, useSelector} from 'react-redux';
 import {HideModalAction} from './actions/ModalAction'
+import Collections from './components/collections/Collections';
+import NewCollection from './components/collections/NewCollection';
+import UpdateCollection from './components/collections/UpdateCollection';
 
 function App() {
   const dispatch = useDispatch()
@@ -20,7 +23,6 @@ function App() {
 
   const pageModal = () =>{
     if(showModal === true){
-      console.log('showing modal')
       return(
         <div className="modal-background" onClick={e => closeModal()}>
           <div className="modal-box">
@@ -47,6 +49,9 @@ function App() {
             <Route path='/contact' component={Contact}/>
             <Route path='/about-me' component={AboutMe}/>
             <Route path='/login' component={Login}/>
+            <Route path='/collections' exact component={Collections}/>
+            <Route path='/collections/new' exact component={NewCollection}/>
+            <Route path='/collections/:collectionId/update' exact component={UpdateCollection}/>
           </Switch>
         </div>
       </div>
