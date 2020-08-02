@@ -12,31 +12,36 @@ const UpdateCollection = ({match}) => {
   const paintings = useSelector(state => state.PaintingsReducer);
   const [updatableCollectionName, setUpdatableCollectionName] = useState('');
   const [updatablePaintings, setUpdatablePaintings] = useState([]);
+  const [errorMessage, setErrorMessage] = useState([])
   
+  // will trigger when component is loaded and run once
   useEffect(() => {
     const collectionId = match.params.collectionId;
     dispatch(GetCollectionAction(currentUser, collectionId));
     dispatch(GetCollectionPaintingsAction(collectionId));
   },[])
 
+  // will trigger when collections or paintings has loaded from reeducer and
+  // and push reducers data to local states
   useLayoutEffect(() => {
     if(!updatableCollectionName){setUpdatableCollectionName(collection.name)}
     if(updatablePaintings.length === 0){setUpdatablePaintings(paintings)}
   },[collection, paintings])
 
+  // will add another painting to the satate and in turn create another form for the painting
   const addPaintingToPaintings = () => {
     const currentPaintings = [...updatablePaintings]
     currentPaintings.push({name: '', image_string: '', dimensions: '', medium: '', price: '', description: ''})
     setUpdatablePaintings(currentPaintings)
   } 
 
+  // updates the values in the paintings array
   const setPaintingValues = (key, index, value) =>{
     let pics = [...paintings];
     pics[index][key] = value
     setUpdatablePaintings(pics);
   }
 
-  // i have no idea why the index and files change places, as far as i can see it not an async error...
   // function will use reader object to convert image to base64 string
   // and then push it to the pictures state
   const setImageString = (index, file) => {
@@ -48,13 +53,37 @@ const UpdateCollection = ({match}) => {
     }
   }
 
-  const sendData = () => {
+  // will check if the text fields are filled in
+  const verifyFields = () => {
+    if(updatableCollectionName.length === 0){return false}
+    if(updatablePaintings.length !== 0){
+      for(let i = 0; i < paintings.length;  i++){
+        if(paintings[i].name.length === 0){return false}
+        if(paintings[i].image_string.length === 0){return false}
+        if(paintings[i].dimensions.length === 0){return false}
+        if(paintings[i].medium.length === 0){return false}
+        if(paintings[i].price.length === 0){return false}
+      }
+    }
+    return true
+  }
 
+  // code will check if all fields are filled in
+  // if so the code will update the collection
+  //otherwise the coe will trigger an error message
+  const sendData = () => {
+    if(verifyFields() === false ){
+      setErrorMessage('Some of the form field are not filled in');
+    }else{
+      dispatch(NewCollectionAction(collectionName, currentUser));
+    }
   }
 
   return(
     <div className='container'>
-      <input type="text" value={updatableCollectionName}/>
+      <h1>Update Collection</h1>
+      {errorMessage.length !== 0 ? <div className='error-message'><p>- {errorMessage}</p></div> : ''}
+      <input type="text" value={updatableCollectionName} onChange={e => setUpdatableCollectionName(e.target.value)}/>
       {updatablePaintings.length !== 0 ? 
         updatablePaintings.map((painting, index) => 
           <div className="input-box" key={index}>
