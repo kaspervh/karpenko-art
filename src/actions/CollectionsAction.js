@@ -12,14 +12,14 @@ export const GetCollectionsAction = () =>{
 
 export const GetCollectionAction = (currentUser, collectionId) => {
   return async dispatch => {
-    const collection = await fetch(`https://karpenko-art-backend.azurewebsites.net/collections/${collectionId}`, {
+    const collection = await fetch(`http://localhost:1337/collections/${collectionId}`, {
       method: 'GET',
       headers: {"Content-Type": "application/json", "auth-token": currentUser.token}
-    })
+    });
 
     dispatch({
       type: 'GetCollectionAction',
-      payload: await collection.json()
+      payload: await collection.json(),
     })
   }
 }

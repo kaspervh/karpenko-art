@@ -1,6 +1,8 @@
 export const GetCollectionPaintingsAction = (collectionId) => {
+
+  console.log('collection paintings')
   return async dispatch =>{
-    const paintings = await fetch(`https://karpenko-art-backend.azurewebsites.net/paintings/${collectionId}`)
+    const paintings = await fetch(`http://localhost:1337/paintings/${collectionId}`)
 
     dispatch({
       type: 'GetCollectionPaintingsAction',

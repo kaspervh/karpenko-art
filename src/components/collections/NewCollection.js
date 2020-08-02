@@ -16,16 +16,17 @@ const NewCollection = () => {
 
   // will trigger when the send button has been pressed an the collection action has fired 
   useEffect(() => {
+    console.log(collectionName, collection.name)
     if(collection.name === collectionName){
       if(paintings.length !== 0){
         const newPaintings = [];
         for(let painting of paintings){newPaintings.push({collection_id: collection._id, ...painting})}
-        console.log('newPaintings', newPaintings)
+        
         dispatch(NewPaintingsAction(
           currentUser,
           newPaintings
         ))
-      }    
+      } 
     }
   },[collection])
 
@@ -64,9 +65,15 @@ const NewCollection = () => {
     }
   }
 
-  // i have no idea why the index and files change places, as far as i can see it not an async error...
+  // function will use reader object to convert image to base64 string
+  // and then push it to the pictures state
   const setImageString = (index, file) => {
-    setPaintingValues('image_string', index, file.base64)
+    console.log(file[0])
+    let reader = new FileReader();
+    reader.readAsDataURL(file[0]);
+    reader.onload = () => {
+      setPaintingValues('image_string', index, reader.result)
+    }
   }
 
   return(
@@ -84,7 +91,7 @@ const NewCollection = () => {
             <h4>add painting {index +1}</h4>
             <div className="input-box">
               <input type="text" placeholder='Name:' value={painting.name} onChange={e => setPaintingValues('name', index, e.target.value)}/>
-              <FileBase64 multiple={false} onDone={setImageString.bind(this, index) }/>
+              <input type="file" onChange={e => setImageString(index, e.target.files)}/>
               
             </div>
             <div className="input-box">

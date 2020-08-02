@@ -9,6 +9,7 @@ const allReducers = combineReducers({
     CurrentUserReducer,
     CollectionsReducer,
     PaintingsReducer,
+
 });
 
 export default allReducers;

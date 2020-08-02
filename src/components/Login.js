@@ -24,7 +24,6 @@ const Login = () => {
 
   return(
     <div className="form-container-vertical">
-      {console.log(errorMessage)}
       {errorMessage.length !== 0 ? <div className='error-message'><p>- {errorMessage}</p></div> : ''}
       
       <h1>Login to karpenko art</h1>
