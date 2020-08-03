@@ -75,7 +75,7 @@ const UpdateCollection = ({match}) => {
     if(verifyFields() === false ){
       setErrorMessage('Some of the form field are not filled in');
     }else{
-      dispatch(NewCollectionAction(collectionName, currentUser));
+      dispatch();
     }
   }
 

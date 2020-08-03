@@ -79,7 +79,6 @@ const NewCollection = () => {
   return(
     <div className='container'>
       <h1>New Collection</h1>
-      {console.log(errorMessage)}
       {errorMessage.length !== 0 ? <div className='error-message'><p>- {errorMessage}</p></div> : ''}
       <div className="input-box">
         <input type="text" placeholder='Collection name:' value={collectionName} onChange={e => setCollectionName(e.target.value)}/>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import { useEffect } from 'react';
 import {GetCollectionsAction} from '../../actions/CollectionsAction';
@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom';
 
 const Collections = () => {
   const dispatch = useDispatch();
-  const collections = useSelector(state => state.CollectionsReducer);
+  const collections = useSelector(state => state.AllCollectionsReducer);
 
   useEffect(() => {
     dispatch(GetCollectionsAction())
