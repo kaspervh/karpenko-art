@@ -38,3 +38,19 @@ export const NewCollectionAction = (name, currentUser) => {
     })
   }
 }
+
+export const UpdateCollectionAction = (collectionId, collectionName, currentUser) => {
+  console.log('update collection')
+  return async dispatch => {
+    const collection = await fetch(`http://localhost:1337/collections/${collectionId}`,{
+      method: "PATCH",
+      headers: {"Content-Type": "application/json", "auth-token": currentUser.token},
+      body: JSON.stringify({collectionName})
+    })
+
+    dispatch({
+      type: 'UpdateCollectionAction',
+      payload: await collection.json(),
+    })
+  }
+}

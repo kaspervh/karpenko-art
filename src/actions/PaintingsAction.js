@@ -21,8 +21,6 @@ export const NewPaintingsAction = (currentUser,  paintings) => {
       body: JSON.stringify({paintings: paintings})
     })
 
-    console.log(painting)
-
     dispatch({
       type: 'NewPaintingsAction',
       payload: await painting.json(),
@@ -30,3 +28,19 @@ export const NewPaintingsAction = (currentUser,  paintings) => {
   }
 } 
 
+export const UpdatePaintingsAction = (paintings, currentUser) => {
+  console.log(paintings)
+  return async dispatch => {
+    const painting = await fetch('http://localhost:1337/paintings/', {
+      method: "PATCH",
+      headers: {"Content-Type": "application/json", "auth-token": currentUser.token},
+      body: JSON.stringify({paintings: paintings})
+    })
+
+    dispatch({
+      type: 'NewPaintingsAction',
+      payload: await painting.json(),
+    })
+  }
+  
+}

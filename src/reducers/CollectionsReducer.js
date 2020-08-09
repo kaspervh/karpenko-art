@@ -4,6 +4,8 @@ const CollectionsReducer = (state = [], action) => {
       return state = action.payload;
     case 'NewCollectionAction':
       return state = {...action.payload}
+    case 'UpdateCollectionAction':
+      return state = action.payload;
     default:
       return state;
   }

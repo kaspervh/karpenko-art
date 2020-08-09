@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {useSelector, useDispatch} from 'react-redux';
-import {GetCollectionAction} from '../../actions/CollectionsAction';
-import {GetCollectionPaintingsAction} from '../../actions/PaintingsAction';
+import {GetCollectionAction, UpdateCollectionAction} from '../../actions/CollectionsAction';
+import {GetCollectionPaintingsAction, UpdatePaintingsAction} from '../../actions/PaintingsAction';
 import {FileBase64} from 'react-file-base64';
 import { useLayoutEffect } from 'react';
 
@@ -75,7 +75,19 @@ const UpdateCollection = ({match}) => {
     if(verifyFields() === false ){
       setErrorMessage('Some of the form field are not filled in');
     }else{
-      dispatch();
+      dispatch(UpdateCollectionAction(collection._id, updatableCollectionName, currentUser));
+      console.log('updatable paintings', updatablePaintings);
+      let PaintingsToUpdate = [];
+      let paintingsToCreate = [];
+      const paintingsIds = paintings.map(painting => painting._id)
+      for(let painting of updatablePaintings){
+        if(paintingsIds.includes(painting._id)){
+          PaintingsToUpdate.push(painting)
+        }else{
+          paintingsToCreate.push(painting)
+        }
+      }
+      
     }
   }
 

@@ -10,6 +10,7 @@ import LoadingScreen from './shared/LoadingScreen'
 const Gallery = () => {
   const collections = useSelector(state => state.AllCollectionsReducer);
   const paintings = useSelector(state => state.PaintingsReducer);
+  const [collection, setCollection] = useState('');
   const [loading, setLoading] = useState(true);
   const [headline] = useState('Memories of nobody')
   const dispatch = useDispatch()
@@ -21,7 +22,10 @@ const Gallery = () => {
   },[])
 
   useEffect(() => {
-    if(collections.length !== 0){dispatch(GetCollectionPaintingsAction(collections[collections.length -1]._id));}
+    if(collections.length !== 0){
+      setCollection(collections[collections.length -1])
+      dispatch(GetCollectionPaintingsAction(collections[collections.length -1]._id));
+    }
     
   },[collections])
 
@@ -37,7 +41,7 @@ const Gallery = () => {
   return(
     <div>
       <div className="galery-header">
-        <h1>{headline}</h1>
+        <h1>{ collection.length !== 0 ? collection.name : ''}</h1>
       </div>
 
       <div className="gallery-box">
