@@ -24,7 +24,6 @@ const Login = () => {
 
   return(
     <div className="form-container-vertical">
-      {console.log(errorMessage)}
       {errorMessage.length !== 0 ? <div className='error-message'><p>- {errorMessage}</p></div> : ''}
       
       <h1>Login to karpenko art</h1>
@@ -40,7 +39,6 @@ const Login = () => {
         <br/>
         <input type="text" value={password} onChange={e => setPassword(e.target.value)}/>
       </div>
-
       <button className="button" onClick={submitForm}>Log in</button>
     
     </div>

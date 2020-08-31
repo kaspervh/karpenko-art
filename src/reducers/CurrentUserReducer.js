@@ -1,6 +1,6 @@
 const saveToLocalStorage = (payload) => {
   try {
-    if(payload.message == "user is logged in"){
+    if(payload.message === "user is logged in"){
       const localStoragePayload = JSON.stringify(payload)
       sessionStorage.setItem('currentUser', localStoragePayload)
     }
